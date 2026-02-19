@@ -26,10 +26,21 @@ def fmt_reset(iso):
     if not iso or iso == "null":
         return "---"
     try:
-        from datetime import datetime
+        from datetime import datetime, timezone
         clean = re.sub(r"\.\d+", "", iso).replace("Z", "+00:00")
-        dt = datetime.fromisoformat(clean).astimezone()
-        return f"{dt.hour}:{dt.minute:02d} {dt.strftime('%b').lower()} {dt.day}"
+        dt = datetime.fromisoformat(clean).astimezone(timezone.utc)
+        now = datetime.now(timezone.utc)
+        secs = int((dt - now).total_seconds())
+        if secs <= 0:
+            return "now"
+        days, rem = divmod(secs, 86400)
+        hours, rem = divmod(rem, 3600)
+        mins = rem // 60
+        if days > 0:
+            return f"in {days}d {hours}h {mins}m"
+        if hours > 0:
+            return f"in {hours}h {mins}m"
+        return f"in {mins}m"
     except Exception:
         return "---"
 
@@ -128,4 +139,4 @@ fh_b, fh_v = bar(fh_pct)
 wk_b, wk_v = bar(wk_pct)
 
 print(f"context: {ctx_b} {ctx_v}% | 5-hour: {fh_b} {fh_v}% | weekly: {wk_b} {wk_v}%")
-print(f"{DIM}5h res {fh_rst} | 7d res {wk_rst}{RST}")
+print(f"{DIM}5h res: {fh_rst} | 7d res: {wk_rst}{RST}")

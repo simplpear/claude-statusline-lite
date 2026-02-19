@@ -4,10 +4,10 @@ Minimal status line for [Claude Code](https://docs.anthropic.com/en/docs/claude-
 
 ```
 context: ┃┃┃┃│││││││ 44%  |  5-hour: ┃│││││││││ 13%  |  weekly: ┃┃┃┃┃│││││ 51%
-5h res 4:59 feb 20 | 7d res 23:59 feb 23
+5h res: in 3h 24m | 7d res: in 3d 5h 12m
 ```
 
-`┃` bright = used, `│` dim = remaining.
+`┃` bright = used, `│` dim = remaining. Reset times show relative countdown.
 
 ## How it works
 
