@@ -3,11 +3,11 @@
 Minimal status line for [Claude Code](https://docs.anthropic.com/en/docs/claude-code) showing real rate limits. Single Python file, zero dependencies.
 
 ```
-context: ┃┃┃┃┃┃┃┃┃┃ 44% | 5-hour: ┃┃┃┃┃┃┃┃┃┃ 13% | weekly: ┃┃┃┃┃┃┃┃┃┃ 51%
+context: ┃┃┃┃│││││││ 44%  |  5-hour: ┃│││││││││ 13%  |  weekly: ┃┃┃┃┃│││││ 51%
 5h res 4:59 feb 20 | 7d res 23:59 feb 23
 ```
 
-Bright bars = used, dim bars = remaining.
+`┃` bright = used, `│` dim = remaining.
 
 ## How it works
 
