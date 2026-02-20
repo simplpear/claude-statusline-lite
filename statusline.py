@@ -7,9 +7,9 @@ USAGE_CACHE = os.path.join(CACHE_DIR, "usage.json")
 CRED_FILE = os.path.expanduser("~/.claude/.credentials.json")
 CACHE_TTL = 60
 
-B = "\u2503"  # ┃
+B = "|"
 
-BRIGHT = "\033[1m"
+BOLD = "\033[1m"
 DIM = "\033[2m"
 RST = "\033[0m"
 
@@ -19,7 +19,9 @@ def bar(pct):
         return DIM + B * 10 + RST, "--"
     pct = max(0, min(100, int(pct)))
     n = round(pct / 10)
-    return BRIGHT + B * n + RST + DIM + B * (10 - n) + RST, str(pct)
+    used = BOLD + B * n + RST if n else ""
+    remaining = DIM + B * (10 - n) + RST if n < 10 else ""
+    return used + remaining, str(pct)
 
 
 def fmt_reset(iso):
